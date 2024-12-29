@@ -18,29 +18,31 @@ export default function Home() {
     setError(null)
 
     try {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 50000)
+
       const response = await fetch('/api/generate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
+        signal: controller.signal,
       })
 
+      clearTimeout(timeoutId)
+
       if (!response.ok) {
-        throw new Error('Failed to generate journey')
+        const errorData = await response.text()
+        throw new Error(errorData || 'Failed to generate journey')
       }
 
       const data: JourneyStep[] = await response.json()
-      console.log('API Response:', data) // Add logging
       setJourneySteps(data)
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message)
-      } else {
-        setError(
-          'An error occurred while generating the journey. Please try again.'
-        )
-      }
+      setError(
+        error instanceof Error
+          ? error.message
+          : 'An error occurred while generating the journey. Please try again.'
+      )
     } finally {
       setIsLoading(false)
     }

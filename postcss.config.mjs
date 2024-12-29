@@ -3,6 +3,15 @@ const config = {
   plugins: {
     tailwindcss: {},
   },
-};
+}
 
-export default config;
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+    'postcss-preset-env': {
+      features: { 'nesting-rules': false },
+    },
+  },
+}
+export default config

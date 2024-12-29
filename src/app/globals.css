@@ -50,6 +50,17 @@
 }
 
 @layer base {
+  h1 {
+    @apply text-4xl font-bold text-black mb-4;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold text-black mb-3;
+  }
+
+  h3 {
+    @apply text-2xl font-medium text-black mb-2;
+  }
   * {
     @apply border-border;
   }
