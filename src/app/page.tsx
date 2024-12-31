@@ -59,10 +59,10 @@ export default function Home() {
         <CustomerJourneyForm onSubmit={generateJourney} isLoading={isLoading} />
         {journeySteps.length > 0 && (
           <>
-            <div className="flex justify-center max-w-2xl mx-auto">
+            <JourneySteps steps={journeySteps} />
+            <div className="flex justify-center mt-4 max-w-2xl mx-auto">
               <CsvDownloadButton journeySteps={journeySteps} />
             </div>
-            <JourneySteps steps={journeySteps} />
           </>
         )}
       </div>

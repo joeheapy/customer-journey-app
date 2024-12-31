@@ -13,7 +13,7 @@ export default function JourneySteps({ steps }: JourneyStepsProps) {
   return (
     <div className="flex overflow-x-auto gap-4 py-4 px-2">
       {steps.map((step, index) => (
-        <Card key={index} className="flex-shrink-0 w-[300px]">
+        <Card key={index} className="flex-shrink-0 w-[250px]">
           <CardHeader>
             <CardTitle>
               {index + 1}: {step.title}
