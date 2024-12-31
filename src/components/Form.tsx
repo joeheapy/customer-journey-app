@@ -2,7 +2,7 @@ import { useState, ChangeEvent, FormEvent } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+// import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Loader2 } from 'lucide-react'
 import type { CustomerJourneyFormProps } from '@/lib/types'
@@ -30,20 +30,29 @@ const CustomerJourneyForm = ({
   }
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full mx-auto">
       <CardHeader>
         <CardTitle>Customer Journey Generator</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Column 1 */}
+            <div className="space-y-4">
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Fill out the form below to generate a customer journey.
+                </p>
+              </div>
+            </div>
+
+            {/* Column 2 */}
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="business_proposition">
                   Business Proposition
                 </Label>
-                <Textarea
+                <Input
                   id="business_proposition"
                   name="business_proposition"
                   value={formData.business_proposition}
@@ -54,7 +63,7 @@ const CustomerJourneyForm = ({
 
               <div className="space-y-2">
                 <Label htmlFor="target_customers">Target Customers</Label>
-                <Textarea
+                <Input
                   id="target_customers"
                   name="target_customers"
                   value={formData.target_customers}
@@ -64,11 +73,11 @@ const CustomerJourneyForm = ({
               </div>
             </div>
 
-            {/* Column 2 */}
+            {/* Column 3 */}
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="customer_scenario">Customer Scenario</Label>
-                <Textarea
+                <Input
                   id="customer_scenario"
                   name="customer_scenario"
                   value={formData.customer_scenario}

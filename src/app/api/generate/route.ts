@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       )
     }
 
-    const input_prompt = `You are a world-class customer experience designer. Design an innovative customer journey for a ${target_customers} named ${persona_name} interested in your ${business_proposition} products and services. ${persona_name} has ${customer_scenario}. Write a narrative in steps from awareness of your products and services, the customer using your service, to the customer leaving your service and ongoing customer relationship management. Name this list of narrative steps {journey_steps}.`
+    const input_prompt = `You are a world-class customer experience designer. Design an innovative customer journey for a ${target_customers} named ${persona_name} interested in your ${business_proposition} products and services. ${persona_name} has ${customer_scenario}. Write a narrative in 10 steps from awareness of your products and services, the customer using your service, to the customer leaving your service and ongoing customer relationship management. Make sure there are 10 steps. Name this list of narrative steps {journey_steps}.`
 
     const completion = await openai.chat.completions.create({
       model: 'gpt-4-0613',

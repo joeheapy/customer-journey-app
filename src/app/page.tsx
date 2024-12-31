@@ -1,6 +1,6 @@
 'use client'
 
-import CustomerJourneyForm from '@/components/CustomerJourneyForm'
+import Form from '@/components/Form'
 import JourneySteps from '@/components/JourneySteps'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { useState } from 'react'
@@ -12,6 +12,10 @@ export default function Home() {
   const [journeySteps, setJourneySteps] = useState<JourneyStep[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const handleJourneyUpdate = (updatedSteps: JourneyStep[]): void => {
+    setJourneySteps(updatedSteps)
+  }
 
   const generateJourney = async (formData: FormData): Promise<void> => {
     setIsLoading(true)
@@ -56,10 +60,10 @@ export default function Home() {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-        <CustomerJourneyForm onSubmit={generateJourney} isLoading={isLoading} />
+        <Form onSubmit={generateJourney} isLoading={isLoading} />
         {journeySteps.length > 0 && (
           <>
-            <JourneySteps steps={journeySteps} />
+            <JourneySteps steps={journeySteps} onUpdate={handleJourneyUpdate} />
             <div className="flex justify-center mt-4 max-w-2xl mx-auto">
               <CsvDownloadButton journeySteps={journeySteps} />
             </div>
