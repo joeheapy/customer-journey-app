@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
+import { FormData } from '@/lib/types'
 
 // Move interface outside of the handler function
-interface JourneyRequest {
-  business_proposition: string
-  target_customers: string
-  customer_scenario: string
-  persona_name: string
-}
+// interface JourneyRequest {
+//   business_proposition: string
+//   target_customers: string
+//   customer_scenario: string
+//   persona_name: string
+// }
 
 // Initialize OpenAI with configuration
 const openai = new OpenAI({
@@ -32,7 +33,7 @@ export async function POST(request: Request) {
       target_customers,
       customer_scenario,
       persona_name,
-    }: JourneyRequest = requestData
+    }: FormData = requestData
 
     // Validate required fields
     if (
